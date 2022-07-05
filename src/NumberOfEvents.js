@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import { debounce } from 'lodash';
 
 export default class NumberOfEvents extends Component {
-	state = {
-		eventsNumber: 32
+	constructor() {
+		super();
+		this.state = {
+			eventsNumber: 32
+		};
+		this.updateAppState = debounce(this.updateAppState.bind(this), 500);
+		this.handleChangeInput = this.handleChangeInput.bind(this);
+	}
+
+	updateAppState = (value) => {
+		this.props.updateEvents(null, value);
 	};
 
 	handleChangeInput = (event) => {
 		this.setState({ eventsNumber: event.target.value });
-		this.props.updateEvents(null, event.target.value);
+		this.updateAppState(event.target.value);
 	};
 
 	render() {
