@@ -11,7 +11,7 @@ describe('<Event /> component', () => {
 	});
 
 	test('Render event card', () => {
-		expect(EventWrapper.find('.event-card')).toHaveLength(1);
+		expect(EventWrapper.find('.event')).toHaveLength(1);
 	});
 	test('Render event title', () => {
 		expect(EventWrapper.find('.summary')).toHaveLength(1);
@@ -23,19 +23,7 @@ describe('<Event /> component', () => {
 		expect(EventWrapper.find('.location')).toHaveLength(1);
 	});
 	test('Render event details button', () => {
-		expect(EventWrapper.find('.more-details')).toHaveLength(1);
-	});
-	test('Render event details element', () => {
-		expect(EventWrapper.find('.event-details-hide')).toHaveLength(1);
-	});
-	test('Render event html link', () => {
-		expect(EventWrapper.find('.event-link')).toHaveLength(1);
-	});
-	test('Render event description', () => {
-		expect(EventWrapper.find('.event-desc')).toHaveLength(1);
-	});
-	test('Render event email', () => {
-		expect(EventWrapper.find('.event-email')).toHaveLength(1);
+		expect(EventWrapper.find('.details-btn')).toHaveLength(1);
 	});
 
 	test('event details collapsed on initial page load', () => {
@@ -44,13 +32,21 @@ describe('<Event /> component', () => {
 
 	test('event details shown on show event button click', () => {
 		EventWrapper.setState({ showDetails: false });
-		EventWrapper.find('.more-details').at(0).simulate('click');
+		EventWrapper.find('.details-btn').at(0).simulate('click');
 		expect(EventWrapper.state('showDetails')).toBe(true);
+		expect(EventWrapper.find('.event-details')).toHaveLength(1);
+		expect(EventWrapper.find('.event-link')).toHaveLength(1);
+		expect(EventWrapper.find('.event-desc')).toHaveLength(1);
+		expect(EventWrapper.find('.event-email')).toHaveLength(1);
 	});
 
-	test('event details hidden on show event button click', () => {
+	test('event details hidden on hide event button click', () => {
 		EventWrapper.setState({ showDetails: true });
-		EventWrapper.find('.more-details').at(0).simulate('click');
+		EventWrapper.find('.details-btn').at(0).simulate('click');
 		expect(EventWrapper.state('showDetails')).toBe(false);
+		expect(EventWrapper.find('.event-details')).toHaveLength(0);
+		expect(EventWrapper.find('.event-link')).toHaveLength(0);
+		expect(EventWrapper.find('.event-desc')).toHaveLength(0);
+		expect(EventWrapper.find('.event-email')).toHaveLength(0);
 	});
 });
