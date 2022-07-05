@@ -3,17 +3,16 @@ import { shallow } from 'enzyme';
 import NumberOfEvents from '../NumberOfEvents';
 
 describe('<NumberOfEvents /> component', () => {
-	let eventNo, NumberOfEventsWrapper;
+	let updateEvents, NumberOfEventsWrapper;
 	beforeAll(() => {
-		eventNo = 32;
-		NumberOfEventsWrapper = shallow(<NumberOfEvents eventNo={eventNo} />);
+		NumberOfEventsWrapper = shallow(<NumberOfEvents updateEvents={() => {}} />);
 	});
 
 	test('render input field for event number', () => {
 		expect(NumberOfEventsWrapper.find('.event-number')).toHaveLength(1);
 	});
 
-	test('render 32 events by default', () => {
+	test('render 32 events on load default', () => {
 		expect(NumberOfEventsWrapper.state('eventsNumber')).toBe(32);
 		expect(NumberOfEventsWrapper.find('.event-number').prop('value')).toBe(32);
 	});

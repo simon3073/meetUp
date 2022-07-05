@@ -7,6 +7,7 @@ export default class NumberOfEvents extends Component {
 
 	handleChangeInput = (event) => {
 		this.setState({ eventsNumber: event.target.value });
+		this.props.updateEvents(null, event.target.value);
 	};
 
 	render() {

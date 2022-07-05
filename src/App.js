@@ -9,11 +9,14 @@ import './nprogress.css';
 class App extends Component {
 	state = {
 		events: [],
-		locations: []
+		locations: [],
+		locationSet: 'all',
+		eventNo: 32
 	};
 
 	componentDidMount() {
 		this.mounted = true;
+
 		getEvents().then((events) => {
 			if (this.mounted) {
 				this.setState({ events, locations: extractLocations(events) });
@@ -25,10 +28,13 @@ class App extends Component {
 		this.mounted = false;
 	}
 
-	updateEvents = (location) => {
+	updateEvents = (location = null, eventCount = null) => {
+		location = location || this.state.locationSet;
+		eventCount = eventCount || this.state.eventNo;
 		getEvents().then((events) => {
-			const locationEvents = location === 'All Cities' ? events : events.filter((event) => event.location === location);
-			this.setState({ events: locationEvents });
+			const locationEvents = location === 'all' ? events : events.filter((event) => event.location === location);
+			const eventsDisplayed = locationEvents.slice(0, eventCount);
+			this.setState({ events: eventsDisplayed, locationSet: location, eventNo: eventCount });
 		});
 	};
 
@@ -39,7 +45,7 @@ class App extends Component {
 				<p>
 					<br />
 				</p>
-				Number of Events: <NumberOfEvents />
+				Number of Events: <NumberOfEvents updateEvents={this.updateEvents} />
 				<EventList events={this.state.events} />
 			</div>
 		);
