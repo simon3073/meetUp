@@ -3,6 +3,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import { Grid, Segment, Divider } from 'semantic-ui-react';
 import './App.css';
 import './nprogress.css';
 
@@ -29,26 +30,34 @@ class App extends Component {
 		this.mounted = false;
 	}
 
-	updateEvents = (location = null, eventCount = null) => {
+	updateEvents = (location, eventCount) => {
 		location = location || this.state.locationSet;
 		eventCount = eventCount || this.state.eventNo;
-		console.log(location, eventCount);
 		getEvents().then((events) => {
 			const locationEvents = location === 'all' ? events : events.filter((event) => event.location === location);
-			const eventsDisplayed = locationEvents.slice(0, eventCount);
-			console.log(eventsDisplayed.length);
-			this.setState({ events: eventsDisplayed, locationSet: location, eventNo: eventCount });
+			this.setState({ events: locationEvents.slice(0, eventCount), locationSet: location, eventNo: eventCount });
 		});
 	};
 
 	render() {
+		const { locationSet } = this.state;
 		return (
 			<div className="App">
-				<CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-				<p>
-					<br />
-				</p>
-				Number of Events: <NumberOfEvents updateEvents={this.updateEvents} />
+				<Grid className="grid-header" stackable columns={2} divided>
+					<div className="header-text">MeetUp!</div>
+
+					<Grid.Row className="grid-row-header">
+						<Grid.Column>
+							<Segment className="header-segment">
+								<CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+								<NumberOfEvents updateEvents={this.updateEvents} />
+							</Segment>
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
+				<Divider horizontal>
+					<span className="event-header">{locationSet === 'all' ? 'All Events' : `Events in ${locationSet}`}</span>
+				</Divider>
 				<EventList events={this.state.events} />
 			</div>
 		);

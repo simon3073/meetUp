@@ -1,18 +1,20 @@
 import React from 'react';
 import Event from './Event';
+import { Grid, Segment } from 'semantic-ui-react';
 
 export default function EventList(props) {
 	const { events } = props;
 	return (
 		<>
-			<h1>Events</h1>
-			<ul className="event-list">
+			<Grid stackable columns={2} className="event-grid" padded="horizontally">
 				{events.map((event) => (
-					<li key={event.id}>
-						<Event event={event} />
-					</li>
+					<Grid.Column key={event}>
+						<Segment className="event-block">
+							<Event event={event} />
+						</Segment>
+					</Grid.Column>
 				))}
-			</ul>
+			</Grid>
 		</>
 	);
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Input } from 'semantic-ui-react';
 
 class CitySearch extends Component {
 	state = {
@@ -26,15 +27,15 @@ class CitySearch extends Component {
 	render() {
 		return (
 			<div className="CitySearch">
-				<input
-					type="text"
-					className="city"
+				<Input
+					icon={{ name: 'search', circular: true }}
+					placeholder="Search for MeetUps in a city"
 					onFocus={() => {
 						this.setState({ showSuggestions: true });
 					}}
+					className="city"
 					value={this.state.query}
 					onChange={this.handleInputChanged}
-					placeholder="Search for a city"
 				/>
 				<ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
 					{this.state.suggestions.map((suggestion) => (

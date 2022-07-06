@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
+import { Segment } from 'semantic-ui-react';
 
 export default class NumberOfEvents extends Component {
 	constructor() {
@@ -22,9 +23,11 @@ export default class NumberOfEvents extends Component {
 
 	render() {
 		return (
-			<div>
+			<Segment className="header-segment">
+				Number of Events
+				<br />
 				<input type="number" className="event-number" value={this.state.eventsNumber} onChange={this.handleChangeInput} />
-			</div>
+			</Segment>
 		);
 	}
 }
