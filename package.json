@@ -4,6 +4,7 @@
 	"private": true,
 	"homepage": "https://simon3073.github.io/meetUp",
 	"dependencies": {
+		"atatus-spa": "^4.4.1",
 		"axios": "^0.27.2",
 		"lodash": "^4.17.21",
 		"nprogress": "^0.2.0",
