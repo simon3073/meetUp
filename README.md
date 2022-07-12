@@ -1,17 +1,60 @@
-# meetUp
+# **meetUp!**
 
 A serverless, progressive web application (PWA) built with React using a
 test-driven development (TDD) technique. The application uses the Google
 Calendar API to fetch upcoming events.
 <br />
 
-_Developer: Simon Bertoli_
+> Live demo <a href="https://simon3073.github.io/meetUp/" target="_blank">here</a>
 
 ---
 
 <br/>
 
-## User Stories
+## **Project Dependencies**
+
+- React CRA
+- React axios and async/await.
+- Javascript
+- CSS
+- Semantic UI
+- Google Calendar API and OAuth2 authentication
+
+<br/>
+
+## **Technical Requirements**
+
+- Create a serverless function to connect to the Google Calendar API using OAuth2 authentication
+- Unit, Integration, User Acceptance and End-To-End testing using Jest, Cucumber, Gherkin and Puppeteer
+- App monitoring with Atatus
+
+<br/>
+
+## **Installation**
+
+1. Clone repo
+
+```bash
+git clone https://github.com/simon3073/meetUp.git
+```
+
+2. Edit homepage in package.json to connected github repo
+3. Run app locally
+
+```bash
+npm run start
+```
+
+4. Deploy on GitHub Pages
+
+```bash
+npm run deploy
+```
+
+<br/>
+<br/>
+
+## **BDD (Behaviour Driven Development)**
 
 ### **FEATURE 1:** FILTER EVENTS BY CITY
 
@@ -110,6 +153,15 @@ SCENARIO 1: _Show a chart with the number of upcoming events in each city_
 - **Then** the user will see a data visualisation of the number of events in the city
 
 <br/>
+
+## **Features**
+
+- Filter events by city
+- Expand/Hide event details
+- Specify number of events to show
+- Authorise using google account
+
+  <br/>
 
 ---
 
