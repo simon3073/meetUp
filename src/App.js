@@ -11,7 +11,7 @@ class App extends Component {
 	state = {
 		events: [],
 		locations: [],
-		locationSet: 'all',
+		locationSet: 'All Cities',
 		eventNo: 32
 	};
 
@@ -34,7 +34,7 @@ class App extends Component {
 		location = location || this.state.locationSet;
 		eventCount = eventCount || this.state.eventNo;
 		getEvents().then((events) => {
-			const locationEvents = location === 'all' ? events : events.filter((event) => event.location === location);
+			const locationEvents = location === 'All Cities' ? events : events.filter((event) => event.location === location);
 			this.setState({ events: locationEvents.slice(0, eventCount), locationSet: location, eventNo: eventCount });
 		});
 	};
@@ -44,7 +44,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Grid className="grid-header" stackable columns={2} divided>
-					<div className="header-text">MeetUp!</div>
+					<div className="header-text"></div>
 
 					<Grid.Row className="grid-row-header">
 						<Grid.Column>
@@ -56,7 +56,7 @@ class App extends Component {
 					</Grid.Row>
 				</Grid>
 				<Divider horizontal>
-					<span className="event-header">{locationSet === 'all' ? 'All Events' : `Events in ${locationSet}`}</span>
+					<span className="event-header">{locationSet === 'All Cities' ? 'All Events' : `Events in ${locationSet}`}</span>
 				</Divider>
 				<EventList events={this.state.events} />
 			</div>
