@@ -8,7 +8,7 @@ export default function EventList(props) {
 		<>
 			<Grid stackable columns={2} className="event-grid" padded="horizontally">
 				{events.map((event) => (
-					<Grid.Column key={event}>
+					<Grid.Column key={event.id}>
 						<Segment className="event-block">
 							<Event event={event} />
 						</Segment>
