@@ -24,7 +24,7 @@ Calendar API to fetch upcoming events.
 
 ## **Technical Requirements**
 
-- Create a serverless function to connect to the Google Calendar API using OAuth2 authentication
+- Create an AWS serverless function to connect to the Google Calendar API using OAuth2 authentication
 - Unit, Integration, User Acceptance and End-To-End testing using Jest, Cucumber, Gherkin and Puppeteer
 - App monitoring with Atatus
 

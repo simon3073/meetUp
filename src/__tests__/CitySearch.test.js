@@ -51,7 +51,7 @@ describe('<CitySearch /> component', () => {
 	});
 
 	test('selecting a suggestion should change query state', () => {
-		CitySearchWrapper.setState({ query: 'Berlin' });
+		CitySearchWrapper.setState({ query: 'Berlin, Germany' });
 		const suggestions = CitySearchWrapper.state('suggestions');
 		CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
 		expect(CitySearchWrapper.state('query')).toBe(suggestions[0]);
@@ -64,7 +64,7 @@ describe('<CitySearch /> component', () => {
 	});
 
 	test('selecting a city in the suggestions list should hide it', () => {
-		CitySearchWrapper.setState({ query: 'Berlin', showSuggesitons: false });
+		CitySearchWrapper.setState({ query: 'Berlin', showSuggestions: false });
 		CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
 		expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
 		expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' });

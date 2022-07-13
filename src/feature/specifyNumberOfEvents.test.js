@@ -14,9 +14,9 @@ defineFeature(feature, (test) => {
 
 		when('the user has not made any selections', () => {});
 
-		then('there will be 32 (2 with local test) events shown', () => {
+		then('there will be 32 (3 with local test) events shown', () => {
 			AppWrapper.update();
-			expect(AppWrapper.find('.event')).toHaveLength(2);
+			expect(AppWrapper.find('.event')).toHaveLength(3);
 		});
 	});
 
