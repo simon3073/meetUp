@@ -4,7 +4,12 @@
   <head>
     <title>Meet Privacy Policy</title>
     <meta charset="utf-8">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="./meetup-app-favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./meetup-app-favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./meetup-app-favicon-16x16">
     <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
   </script>
@@ -12,52 +17,67 @@
 
     <style>
       body {
-        font-family: Verdana, sans-serif;
-        font-size: 0.8em;
+        height: 100vh;
+        background-color: black;
       }
 
-      header,
-      nav,
-      section,
-      article,
-      footer {
-        border: 1px solid grey;
+      .container {
+        width: 100%;
+        height: 100vh;
+        margin-top: 50px;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        font-family: 'Archivo Black', sans-serif !important;
+        color: rgb(229, 249, 9);
+      }
+
+      .policy {
+        width: 80%;
+        font-family: 'Roboto';
+        color: #ffffff;
         margin: 5px;
-        padding: 8px;
       }
 
-      nav ul {
-        margin: 0;
-        padding: 0;
+      button {
+        font-size: 1rem;
+        margin-top: 20px;
+        border-radius: 10px !important;
+        background-color: black;
+        border: 2px #ffe21f solid;
+        color: #ffe21f;
+        font-family: Roboto, sans-serif !important;
+        height: 50px;
+        min-width: 170px;
+        padding: 10px;
+        cursor: pointer;
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
       }
 
-      nav ul li {
-        display: inline;
-        margin: 5px;
+      button:hover {
+        background-color: #ffe21f;
+        color: black;
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
       }
     </style>
   </head>
 
   <body>
-
-    <!-- Header -->
-    <header>
+    <div class="container">
+      <img src="./meetup-app-192.png" />
       <h1>meetUp Privacy Policy</h1>
-    </header>
-    <!-- body -->
-    <section>
-
-      <h1>Privacy Policy</h1>
-
-      <article>
-
+      <div class="policy">
         <p>Last updated: 14/07/2022</p>
         <p>This site is used specifically for education purposes and has no commercial intent or use.
           No personal data is collected or saved at any stage and the calendar accessed is not a personal calendar,
           but one created specifically for the project.</p>
-      </article>
-
-    </section>
+      </div>
+      <button href="https://simon3073.github.io/meetUp/">Back to meetUp</button>
+    </div>
   </body>
 
 </html>
