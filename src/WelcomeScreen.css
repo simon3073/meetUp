@@ -9,7 +9,7 @@
 }
 
 .welcome-screen .block {
-	background-color: #101010;
+	background: #101010;
 	width: 60%;
 	padding: 50px;
 	border-radius: 30px;
@@ -96,4 +96,12 @@
 	border-radius: 5px;
 	border: 0 !important;
 	text-align: center;
+}
+
+@media only screen and (max-width: 666px) {
+	.welcome-screen .block {
+		background: none !important;
+		width: 95% !important;
+		padding: 10px !important;
+	}
 }
