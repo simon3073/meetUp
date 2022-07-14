@@ -44,7 +44,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Grid className="grid-header" stackable columns={2} divided>
-					<div className="header-text"></div>
+					<div className="header-logo"></div>
 
 					<Grid.Row className="grid-row-header">
 						<Grid.Column>

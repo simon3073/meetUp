@@ -3,14 +3,21 @@ import axios from 'axios';
 import NProgress from 'nprogress';
 
 export const getEvents = async () => {
+	NProgress.start();
+
 	if (window.location.href.startsWith('http://localhost')) {
+		NProgress.done();
 		return mockData;
+	}
+
+	if (!navigator.onLine) {
+		const data = localStorage.getItem('lastEvents');
+		NProgress.done();
+		return data ? JSON.parse(data).events : [];
 	}
 
 	const token = await getAccessToken();
 	if (token) {
-		NProgress.start();
-
 		removeQuery();
 		const url = 'https://46l7zstvdk.execute-api.ap-southeast-2.amazonaws.com/dev/api/get-events/' + token;
 		const result = await axios.get(url);
