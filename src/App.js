@@ -14,6 +14,7 @@ class App extends Component {
         events: [],
         locations: [],
         locationSet: 'All Cities',
+        detailIndex: false,
         eventNo: 32,
     };
 
@@ -37,10 +38,11 @@ class App extends Component {
     componentWillUnmount() {
         this.mounted = false;
     }
-
+    //baseDetailIndex
     updateEvents = (location, eventCount) => {
         location = location || this.state.locationSet;
         eventCount = eventCount || this.state.eventNo;
+        this.setState({ detailIndex: null });
         getEvents().then((events) => {
             const locationEvents =
                 location === 'All Cities' ? events : events.filter((event) => event.location === location);
@@ -53,7 +55,7 @@ class App extends Component {
     };
 
     render() {
-        const { events, locations, locationSet, showWelcomeScreen } = this.state;
+        const { events, locations, locationSet, showWelcomeScreen, detailIndex } = this.state;
         if (showWelcomeScreen === undefined) return <div className="App" />;
 
         return (
@@ -79,7 +81,11 @@ class App extends Component {
                                 {locationSet === 'All Cities' ? 'All Events' : `Events in ${locationSet}`}
                             </span>
                         </Divider>
-                        <EventList events={events} />
+                        <EventList
+                            events={events}
+                            detailIndex={detailIndex}
+                            setDetailIndex={(e) => this.setState({ detailIndex: e })}
+                        />
                     </>
                 )}
             </div>

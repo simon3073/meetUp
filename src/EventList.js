@@ -1,13 +1,11 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import Event from './Event';
 import { Grid, Segment, Label, Icon } from 'semantic-ui-react';
 import useWindowSize from './useWindowSize';
 
 export default function EventList(props) {
     const { events } = props;
-    const [detailsIndex, setdetailsIndex] = useState(null);
     const oneColumn = useWindowSize().width < 768;
-    let addToNextRow = 'null';
 
     const showDetails = (eventToShow, arrowPos = 'arrow-el') => {
         return (
@@ -31,19 +29,22 @@ export default function EventList(props) {
         );
     };
 
+    let addToNextRow = 'null';
     // function to calculate where to show the details
     const calculateDetailVisibility = (i) => {
-        const eventDetails = events[detailsIndex]; // set event data to the state saved
-        if (detailsIndex === i && oneColumn) {
+        const eventDetails = events[props.detailIndex]; // set event data to the state saved
+        if (props.detailIndex === i && oneColumn) {
             return showDetails(eventDetails); // if we are seeing only one column then show directly underneath
+        } else if (events.length === 1) {
+            return showDetails(eventDetails, 'arrow-el left'); // if there is only one event show directly underneath
         }
 
         // otherwise calculate if this is the first event displayed (of two)
         // if it is delay its addition to the grid until the next loop
-        const isLastInRow = i % 2 !== 0;
-        if ((detailsIndex === i && isLastInRow) || i === addToNextRow) {
+        const isLastInRow = i % 2 !== 0; //
+        if ((props.detailIndex === i && isLastInRow) || i === addToNextRow) {
             return showDetails(eventDetails, addToNextRow !== 'null' ? 'arrow-el left' : 'arrow-el right');
-        } else if (detailsIndex === i) {
+        } else if (props.detailIndex === i) {
             addToNextRow = i + 1;
         }
     };
@@ -52,21 +53,20 @@ export default function EventList(props) {
         <Grid stackable columns={2} className="event-grid aaaa" padded="horizontally">
             {events.map((event, i) => (
                 <>
-                    {/* {test()} */}
                     <Grid.Column key={event.id}>
                         <Segment className="event-block">
                             <Event
                                 key={event.id}
                                 event={event}
-                                eventDetailsBool={detailsIndex === i}
+                                eventDetailsBool={props.detailIndex === i}
                                 eventId={i}
-                                showEventDetails={(e) => setdetailsIndex(e)}
+                                showEventDetails={(e) => props.setDetailIndex(e)}
                             />
                         </Segment>
                     </Grid.Column>
                     {
-                        // show details of an event based on the state > which is passed up from the event when button is clicked
-                        detailsIndex !== null ? calculateDetailVisibility(i) : ''
+                        // show details of an event based on the state > and detailIndex set
+                        props.detailIndex !== null ? calculateDetailVisibility(i) : ''
                     }
                 </>
             ))}
