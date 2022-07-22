@@ -3,19 +3,27 @@ import { Input } from 'semantic-ui-react';
 import { InfoAlert, WarningAlert } from './Alert';
 
 class CitySearch extends Component {
-	state = {
-		query: '',
-		suggestions: [],
-		showSuggestions: false,
-		infoText: '',
-		warningText: ''
+	constructor() {
+		super();
+		this.state = {
+			query: '',
+			suggestions: [],
+			showSuggestions: false,
+			infoText: '',
+			warningText: this.setOfflineMessage()
+		};
+		this.setOfflineMessage = this.setOfflineMessage.bind(this);
+	}
+
+	setOfflineMessage = () => {
+		return !navigator.onLine ? 'You are currently offline' : '';
 	};
 
 	handleOnBlur = (e) => {
 		this.setState({
 			showSuggestions: false,
 			infoText: '',
-			warningText: ''
+			warningText: this.setOfflineMessage()
 		});
 	};
 
@@ -37,7 +45,7 @@ class CitySearch extends Component {
 				suggestions,
 				showSuggestions: true,
 				infoText: '',
-				warningText: ''
+				warningText: this.setOfflineMessage()
 			});
 		} else {
 			this.setState({
@@ -51,7 +59,7 @@ class CitySearch extends Component {
 	};
 
 	handleItemClicked = (suggestion) => {
-		this.setState({ query: suggestion, showSuggestions: false, infoText: '', warningText: '' });
+		this.setState({ query: suggestion, showSuggestions: false, infoText: '', warningText: this.setOfflineMessage() });
 		this.props.updateEvents(suggestion, null);
 	};
 
