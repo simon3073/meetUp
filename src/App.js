@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import Charts from './Charts';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import WelcomeScreen from './WelcomeScreen';
 import { Grid, Segment, Divider } from 'semantic-ui-react';
@@ -20,19 +21,19 @@ class App extends Component {
 
     async componentDidMount() {
         this.mounted = true;
-        const accessToken = localStorage.getItem('access_token');
-        const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-        const searchParams = new URLSearchParams(window.location.search);
-        const code = searchParams.get('code');
-        this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-        if ((code || isTokenValid) && this.mounted) {
-            getEvents().then((events) => {
-                if (this.mounted) {
-                    this.setState({ events, locations: extractLocations(events) });
-                    this.updateEvents();
-                }
-            });
-        }
+        // const accessToken = localStorage.getItem('access_token');
+        // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+        // const searchParams = new URLSearchParams(window.location.search);
+        // const code = searchParams.get('code');
+        // this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+        // if ((code || isTokenValid) && this.mounted) {
+        getEvents().then((events) => {
+            if (this.mounted) {
+                this.setState({ events, locations: extractLocations(events) });
+                this.updateEvents();
+            }
+        });
+        // }
     }
 
     componentWillUnmount() {
@@ -54,10 +55,37 @@ class App extends Component {
         });
     };
 
+    getEventNoData = () => {
+        const { locations, events } = this.state;
+        const data = locations.map((location) => {
+            const number = events.filter((event) => event.location === location).length;
+            const city = location.split(', ').shift();
+            return { city, number };
+        });
+        return data;
+    };
+
+    data = [
+        { name: 'Group A', value: 400 },
+        { name: 'Group B', value: 300 },
+        { name: 'Group C', value: 300 },
+        { name: 'Group D', value: 200 },
+    ];
+
+    getEventTypeData = () => {
+        const { events } = this.state;
+        const tech2find = ['React', 'jQuery', 'Javascript', 'Angular', 'Node.js'];
+        const data = tech2find.map((tech) => {
+            const number = events.filter((event) => event.summary.toLowerCase().includes(tech.toLowerCase())).length;
+            return { name: tech, value: number };
+        });
+        return data;
+    };
+
     render() {
         const { events, locations, locationSet, showWelcomeScreen, detailIndex } = this.state;
-        if (showWelcomeScreen === undefined) return <div className="App" />;
-
+        // if (showWelcomeScreen === undefined) return <div className="App" />;
+        console.log(this.getEventTypeData());
         return (
             <div className="App">
                 {showWelcomeScreen ? (
@@ -76,11 +104,13 @@ class App extends Component {
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
+                        <Charts barData={this.getEventNoData()} pieData={this.getEventTypeData()} />
                         <Divider horizontal>
                             <span className="event-header">
                                 {locationSet === 'All Cities' ? 'All Events' : `Events in ${locationSet}`}
                             </span>
                         </Divider>
+
                         <EventList
                             events={events}
                             detailIndex={detailIndex}
