@@ -47,6 +47,10 @@ input[type='number'] {
 }
 .event-grid {
     margin-top: 10px !important;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
 }
 
 .event-number {
@@ -180,6 +184,10 @@ input:focus {
 .event-details-block {
     padding-top: 0 !important;
     margin-top: -10px;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-duration: 0.5s;
 }
 
 .arrow {
@@ -284,32 +292,36 @@ input:focus {
     top: 0px;
 }
 
-.data-vis-wrapper {
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 60px;
-}
-
 .data-vis-hr {
     border: none;
     border-top: rgb(229, 249, 9) 1px solid;
-    width: 95%;
+    width: 100%;
     padding-bottom: 30px;
 }
 
-.bar-graph,
-.pie-graph {
-    width: 100%;
+.data-vis-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 60px;
 }
 
-.bar-graph p,
-.pie-graph p {
-    font-size: 24px;
+.bar-graph {
+    flex-basis: 60%;
+}
+
+.pie-graph {
+    flex-basis: 30%;
+}
+
+/* .recharts-legend-item span {
+    font-size: 18px;
     font-weight: bold !important;
     font-family: 'Roboto', sans-serif !important;
     padding-bottom: 5px;
     color: rgb(229, 249, 9);
-}
+    padding-bottom: 15px;
+} */
 
 .recharts-cartesian-axis-tick-value,
 text.recharts-text.recharts-pie-label-text {
@@ -318,24 +330,79 @@ text.recharts-text.recharts-pie-label-text {
     font-family: 'Roboto', sans-serif !important;
 }
 
+.recharts-cartesian-axis-tick-value {
+    font-size: 1.1rem;
+}
+
+.recharts-default-tooltip {
+    background-color: #000 !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 10px;
+}
+
+.recharts-default-label {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.recharts-legend-item svg {
+    display: none !important;
+}
+
 @media only screen and (min-width: 992px) {
-    /* .data-vis-wrapper {
+    .data-vis-wrapper {
         flex-direction: row;
     }
     .data-vis-wrapper .recharts-responsive-container {
-        flex-basis: 50%;
-        max-width: 50%;
         min-width: auto;
         margin: 0 auto;
-    } */
+        flex-basis: 40%;
+        max-width: 40%;
+    }
+
+    .data-vis-wrapper .bar-graph {
+        flex-basis: 60%;
+        max-width: 60%;
+    }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 991px) {
+    .data-vis-wrapper .recharts-responsive-container {
+        min-width: auto;
+        margin: 0 -20px 0;
+        flex-basis: 95%;
+        max-width: 95%;
+    }
+
+    .data-vis-wrapper .pie-graph {
+        margin: -40px 0 -40px 10px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
     .ui.stackable.grid > .wide.column {
         padding-top: 0 !important;
         margin-top: -10px !important;
     }
     .event-header {
         font-size: 1.2rem !important;
+    }
+
+    text.recharts-text.recharts-pie-label-text {
+        font-size: 14px !important;
+    }
+
+    .grid-header {
+        margin: 0 auto 10px !important;
+    }
+}
+
+/* Animations fadeIn */
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

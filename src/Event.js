@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 
 class Event extends Component {
@@ -46,5 +47,11 @@ class Event extends Component {
         );
     }
 }
+
+Event.propTypes = {
+    event: PropTypes.object.isRequired,
+    eventDetailsBool: PropTypes.bool.isRequired,
+    eventId: PropTypes.number.isRequired,
+};
 
 export default Event;

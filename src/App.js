@@ -15,7 +15,7 @@ class App extends Component {
         events: [],
         locations: [],
         locationSet: 'All Cities',
-        detailIndex: false,
+        detailIndex: undefined,
         eventNo: 32,
     };
 
@@ -65,13 +65,6 @@ class App extends Component {
         return data;
     };
 
-    data = [
-        { name: 'Group A', value: 400 },
-        { name: 'Group B', value: 300 },
-        { name: 'Group C', value: 300 },
-        { name: 'Group D', value: 200 },
-    ];
-
     getEventTypeData = () => {
         const { events } = this.state;
         const tech2find = ['React', 'jQuery', 'Javascript', 'Angular', 'Node.js'];
@@ -85,7 +78,6 @@ class App extends Component {
     render() {
         const { events, locations, locationSet, showWelcomeScreen, detailIndex } = this.state;
         // if (showWelcomeScreen === undefined) return <div className="App" />;
-        console.log(this.getEventTypeData());
         return (
             <div className="App">
                 {showWelcomeScreen ? (
@@ -110,7 +102,6 @@ class App extends Component {
                                 {locationSet === 'All Cities' ? 'All Events' : `Events in ${locationSet}`}
                             </span>
                         </Divider>
-
                         <EventList
                             events={events}
                             detailIndex={detailIndex}
