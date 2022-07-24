@@ -1,13 +1,14 @@
-import { React } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Event from './Event';
-import { Grid, Segment, Label, Icon, Transition } from 'semantic-ui-react';
+import { Grid, Segment, Label, Icon } from 'semantic-ui-react';
 import useWindowSize from './useWindowSize';
 
 export default function EventList(props) {
     const { events, detailIndex } = props;
-    const oneColumn = useWindowSize().width < 768;
+    const oneColumn = useWindowSize().width < 768; // set variable onResize using the useWindowSize hook
 
+    // function to display event detail call when a Show Details button has been clicked
     const showDetails = (eventToShow, arrowPos = 'arrow-el') => {
         return (
             <Grid.Column width={16} key={eventToShow.id} className="event-details-block">
@@ -54,11 +55,10 @@ export default function EventList(props) {
         <Grid stackable columns={2} className="event-grid" padded="horizontally">
             {events ? (
                 events.map((event, i) => (
-                    <>
-                        <Grid.Column key={event.id}>
+                    <Fragment key={event.id}>
+                        <Grid.Column>
                             <Segment className="event-block">
                                 <Event
-                                    key={event.id}
                                     event={event}
                                     eventDetailsBool={detailIndex === i}
                                     eventId={i}
@@ -70,7 +70,7 @@ export default function EventList(props) {
                             // show details of an event based on the state > and detailIndex set
                             detailIndex !== null ? calculateDetailVisibility(i) : ''
                         }
-                    </>
+                    </Fragment>
                 ))
             ) : (
                 <div className="loader">LOADING</div>

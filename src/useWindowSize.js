@@ -1,5 +1,6 @@
 import { useLayoutEffect, useState } from 'react';
 
+// hook to detect window size on resize
 const useWindowSize = () => {
     const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
     const handleSize = () => {

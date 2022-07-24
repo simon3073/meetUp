@@ -10,6 +10,8 @@ import './App.css';
 import './nprogress.css';
 
 class App extends Component {
+    // set the details event index as a state from top component
+
     state = {
         showWelcomeScreen: undefined,
         events: [],
@@ -39,11 +41,10 @@ class App extends Component {
     componentWillUnmount() {
         this.mounted = false;
     }
-    //baseDetailIndex
+
     updateEvents = (location, eventCount) => {
         location = location || this.state.locationSet;
         eventCount = eventCount || this.state.eventNo;
-        this.setState({ detailIndex: null });
         getEvents().then((events) => {
             const locationEvents =
                 location === 'All Cities' ? events : events.filter((event) => event.location === location);
@@ -51,10 +52,12 @@ class App extends Component {
                 events: locationEvents.slice(0, eventCount),
                 locationSet: location,
                 eventNo: eventCount,
+                detailIndex: null, // reset the details panel on changing of location or event no to view
             });
         });
     };
 
+    // data for bar chart
     getEventNoData = () => {
         const { locations, events } = this.state;
         const data = locations.map((location) => {
@@ -65,6 +68,7 @@ class App extends Component {
         return data;
     };
 
+    // data for pie chart
     getEventTypeData = () => {
         const { events } = this.state;
         const tech2find = ['React', 'jQuery', 'Javascript', 'Angular', 'Node.js'];
@@ -96,7 +100,7 @@ class App extends Component {
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
-                        <Charts barData={this.getEventNoData()} pieData={this.getEventTypeData()} />
+                        {/* <Charts barData={this.getEventNoData()} pieData={this.getEventTypeData()} /> */}
                         <Divider horizontal>
                             <span className="event-header">
                                 {locationSet === 'All Cities' ? 'All Events' : `Events in ${locationSet}`}

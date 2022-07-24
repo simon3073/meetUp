@@ -7,16 +7,20 @@ class Event extends Component {
         showDetails: false,
     };
 
+    // when ShowDetails is clicked, change text of button and send the eventID up to EventList component
     handleButtonClick = async () => {
         this.setState({ showDetails: !this.state.showDetails });
         this.props.showEventDetails(this.state.showDetails ? null : this.props.eventId);
     };
 
+    // display Google Event correctly
     displayDate = (d) => {
         const date = new Date(d);
         return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
     };
 
+    // on update component check this event is not the current event set to show details
+    // if prop boolean passes now and it is set - set the state to false
     componentDidUpdate() {
         if (!this.props.eventDetailsBool && this.state.showDetails) {
             this.setState({ showDetails: false });

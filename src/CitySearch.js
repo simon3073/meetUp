@@ -11,16 +11,18 @@ class CitySearch extends Component {
             suggestions: [],
             showSuggestions: false,
             infoText: '',
-            warningText: this.setOfflineMessage(),
+            warningText: this.setOfflineMessage(), // check offline status on load
         };
         this.setOfflineMessage = this.setOfflineMessage.bind(this);
     }
 
+    // by default check if the app is offline - display message if so and leave blank otherwise
     setOfflineMessage = () => {
         return !navigator.onLine ? 'You are currently offline' : '';
     };
 
-    handleOnBlur = (e) => {
+    // when user moves focus from the city input > remove the suggestions box
+    handleOnBlur = () => {
         this.setState({
             showSuggestions: false,
             infoText: '',
@@ -28,6 +30,7 @@ class CitySearch extends Component {
         });
     };
 
+    // on input entry > change suggestions offered and set the Alert helper accordingly
     handleInputChanged = (event) => {
         const value = event.target.value;
         const suggestions = this.props.locations.filter((location) => {
@@ -59,6 +62,7 @@ class CitySearch extends Component {
         }
     };
 
+    // on clicking of a suggestions
     handleItemClicked = (suggestion) => {
         this.setState({
             query: suggestion,

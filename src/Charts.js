@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useWindowSize from './useWindowSize';
+
 import {
     Bar,
     BarChart,
@@ -16,8 +18,9 @@ import {
 
 export default function Charts(props) {
     const { barData, pieData } = props;
+    const oneColumn = useWindowSize().width < 768; // set variable onResize using the useWindowSize hook
 
-    // Pie Chart functions
+    // Custom Pie Chart functions
     const COLORS = [
         'rgb(229, 249, 9)',
         'rgba(229, 249, 9, .8)',
@@ -48,7 +51,7 @@ export default function Charts(props) {
                             cy="55%"
                             labelLine={false}
                             label={({ name, percent }) => (percent ? `${name} ${(percent * 100).toFixed(0)}%` : '')}
-                            outerRadius={65}
+                            outerRadius={oneColumn ? 65 : 100}
                             stroke="black"
                             dataKey="value"
                         >
