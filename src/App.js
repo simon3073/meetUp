@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import Charts from './Charts';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import WelcomeScreen from './WelcomeScreen';
 import { Grid, Segment, Divider } from 'semantic-ui-react';
@@ -9,12 +10,14 @@ import './App.css';
 import './nprogress.css';
 
 class App extends Component {
+    // set the details event index as a state from top component
+
     state = {
         showWelcomeScreen: undefined,
         events: [],
         locations: [],
         locationSet: 'All Cities',
-        detailIndex: false,
+        detailIndex: undefined,
         eventNo: 32,
     };
 
@@ -38,11 +41,10 @@ class App extends Component {
     componentWillUnmount() {
         this.mounted = false;
     }
-    //baseDetailIndex
+
     updateEvents = (location, eventCount) => {
         location = location || this.state.locationSet;
         eventCount = eventCount || this.state.eventNo;
-        this.setState({ detailIndex: null });
         getEvents().then((events) => {
             const locationEvents =
                 location === 'All Cities' ? events : events.filter((event) => event.location === location);
@@ -50,14 +52,36 @@ class App extends Component {
                 events: locationEvents.slice(0, eventCount),
                 locationSet: location,
                 eventNo: eventCount,
+                detailIndex: null, // reset the details panel on changing of location or event no to view
             });
         });
+    };
+
+    // data for bar chart
+    getEventNoData = () => {
+        const { locations, events } = this.state;
+        const data = locations.map((location) => {
+            const number = events.filter((event) => event.location === location).length;
+            const city = location.split(', ').shift();
+            return { city, number };
+        });
+        return data;
+    };
+
+    // data for pie chart
+    getEventTypeData = () => {
+        const { events } = this.state;
+        const tech2find = ['React', 'jQuery', 'Javascript', 'Angular', 'Node.js'];
+        const data = tech2find.map((tech) => {
+            const number = events.filter((event) => event.summary.toLowerCase().includes(tech.toLowerCase())).length;
+            return { name: tech, value: number };
+        });
+        return data;
     };
 
     render() {
         const { events, locations, locationSet, showWelcomeScreen, detailIndex } = this.state;
         if (showWelcomeScreen === undefined) return <div className="App" />;
-
         return (
             <div className="App">
                 {showWelcomeScreen ? (
@@ -76,6 +100,7 @@ class App extends Component {
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
+                        <Charts barData={this.getEventNoData()} pieData={this.getEventTypeData()} />
                         <Divider horizontal>
                             <span className="event-header">
                                 {locationSet === 'All Cities' ? 'All Events' : `Events in ${locationSet}`}

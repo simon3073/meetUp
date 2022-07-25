@@ -1,5 +1,7 @@
 # **meetUp!**
 
+<img src="https://res.cloudinary.com/ds9nzjduw/image/upload/v1658709494/CareeerFoundry%20Cuourse/README_Cover_Image_fm8bko.png">
+
 A serverless, progressive web application (PWA) built with React using a
 test-driven development (TDD) technique. The application uses the Google
 Calendar API to fetch upcoming events.
@@ -13,20 +15,22 @@ Calendar API to fetch upcoming events.
 
 ## **Project Dependencies**
 
-- React CRA
-- React axios and async/await.
-- Javascript
-- CSS
-- Semantic UI
-- Google Calendar API and OAuth2 authentication
+-   React CRA
+-   React axios and async/await.
+-   Javascript
+-   CSS
+-   Semantic UI
+-   Google Calendar API and OAuth2 authentication
+-   AWS Lambda
+-   Jest, Cucumber and Puppeteer for Testing
 
 <br/>
 
 ## **Technical Requirements**
 
-- Create an AWS serverless function to connect to the Google Calendar API using OAuth2 authentication
-- Unit, Integration, User Acceptance and End-To-End testing using Jest, Cucumber, Gherkin and Puppeteer
-- App monitoring with Atatus
+-   Create an AWS serverless function to connect to the Google Calendar API using OAuth2 authentication
+-   Unit, Integration, User Acceptance and End-To-End testing using Jest, Cucumber, Gherkin and Puppeteer
+-   App monitoring with Atatus
 
 <br/>
 
@@ -62,21 +66,21 @@ As a **user**, I should be able to **see all the events in a city** so that **I 
 
 SCENARIO 1: _WHEN USER HASN’T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM ALL CITIES:_
 
-- **Given** user hasn’t searched for any city
-- **When** the user opens the app
-- **Then** the user should see a list of all upcoming events
+-   **Given** user hasn’t searched for any city
+-   **When** the user opens the app
+-   **Then** the user should see a list of all upcoming events
 
 SCENARIO 2: _USER SHOULD SEE A LIST OF SUGGESTIONS WHEN THEY SEARCH FOR A CITY:_
 
-- **Given** the main page is open
-- **When** user starts typing in the city textbox
-- **Then** the user should see a list of cities (suggestions) that match what they’ve typed
+-   **Given** the main page is open
+-   **When** user starts typing in the city textbox
+-   **Then** the user should see a list of cities (suggestions) that match what they’ve typed
 
 SCENARIO 3: _USER CAN SELECT A CITY FROM THE SUGGESTED LIST:_
 
-- **Given** the user was typing “Berlin” in the city textbox, and the list of suggested cities is showing
-- **When** the user selects a city (e.g., “Berlin, Germany”) from the list
-- **Then** their city should be changed to that city (i.e., “Berlin, Germany”), and the user should receive a list of upcoming events in that city
+-   **Given** the user was typing “Berlin” in the city textbox, and the list of suggested cities is showing
+-   **When** the user selects a city (e.g., “Berlin, Germany”) from the list
+-   **Then** their city should be changed to that city (i.e., “Berlin, Germany”), and the user should receive a list of upcoming events in that city
 
 <br/>
 
@@ -86,21 +90,21 @@ As a **user**, I should be able to **see more information about a specific event
 
 SCENARIO 1: _An event element is collapsed by default_
 
-- **Given** the main page is open
-- **When** the user has not made any selections
-- **Then** the user will not see any specific event details
+-   **Given** the main page is open
+-   **When** the user has not made any selections
+-   **Then** the user will not see any specific event details
 
 SCENARIO 2: _User can expand an event to see its details_
 
-- **Given** a user wants to see more about an event
-- **When** the user selects/clicks the event
-- **Then** the event details will show
+-   **Given** a user wants to see more about an event
+-   **When** the user selects/clicks the event
+-   **Then** the event details will show
 
 SCENARIO 3: _User can collapse an event to hide its details_
 
-- **Given** a user no longer wants to see the event OR decides to view another event
-- **When** the user selects/clicks the event OR selects/clicks another event
-- **Then** the event detail will hide
+-   **Given** a user no longer wants to see the event OR decides to view another event
+-   **When** the user selects/clicks the event OR selects/clicks another event
+-   **Then** the event detail will hide
 
 <br/>
 
@@ -110,15 +114,15 @@ As a **user**, I should be able to **specify the amount of events I see at a tim
 
 SCENARIO 1: _When user hasn’t specified a number, 32 is the default number._
 
-- **Given** the main page is open
-- **When** the user has not made any selections
-- **Then** there will be 32 events shown
+-   **Given** the main page is open
+-   **When** the user has not made any selections
+-   **Then** there will be 32 events shown
 
 SCENARIO 2: _User can change the number of events they want to see_
 
-- **Given** a user wants to see a specific number of events
-- **When** a user inputs a number into the app
-- **Then** that number of events will be shown
+-   **Given** a user wants to see a specific number of events
+-   **When** a user inputs a number into the app
+-   **Then** that number of events will be shown
 
 <br/>
 
@@ -128,15 +132,15 @@ As a **user**, I should be able to **still view the app without an internet** so
 
 SCENARIO 1: _Show cached data when there’s no internet connection._
 
-- **Given** the user has no internet connection
-- **When** they open the app
-- **Then** they will see data saved in the cache
+-   **Given** the user has no internet connection
+-   **When** they open the app
+-   **Then** they will see data saved in the cache
 
 SCENARIO 2: _Show error when user changes the settings (city, time range)_
 
-- **Given** the user has no internet connection
-- **When** the user navigates to a page
-- **Then** they will recieve an error notifying them of not having internet connection
+-   **Given** the user has no internet connection
+-   **When** the user navigates to a page
+-   **Then** they will recieve an error notifying them of not having internet connection
 
 <br/>
 
@@ -148,20 +152,19 @@ SCENARIO 1: _Show a chart with the number of upcoming events in each city_
 
 >
 
-- **Given** the user wants to see events in a specific city
-- **When** the user enters the city into the app
-- **Then** the user will see a data visualisation of the number of events in the city
+-   **Given** the user wants to see events in a specific city
+-   **When** the user enters the city into the app
+-   **Then** the user will see a data visualisation of the number of events in the city
 
 <br/>
 
 ## **Features**
 
-- Filter events by city
-- Expand/Hide event details
-- Specify number of events to show
-- Authorise using google account
-
-  <br/>
+-   Filter events by city
+-   Expand/Hide event details
+-   Specify number of events to show
+-   Authorise using google account
+    <br/>
 
 ---
 
@@ -169,13 +172,13 @@ SCENARIO 1: _Show a chart with the number of upcoming events in each city_
 <h2 align="left"><i>Who am I?</i></h2>
 <h3 align="left">I'm Simon Bertoli 👋 - an Old and New developer from Melbourne</h3>
 
-- 🔭 I’m currently working on **my Full-Stack Web Development Program at Career Foundry**
+-   🔭 I’m currently working on **my Full-Stack Web Development Program at Career Foundry**
 
-- 🌱 I’m currently learning **React, Git, MongoDB**
+-   🌱 I’m currently learning **React, Git, MongoDB**
 
-- 👨‍💻 All of my projects are currently available at my <a href="https://github.com/simon3073" target="_blank">Github Homepage</a>, at <aand href="http://simonbertoli.com" target="_blank">simonbertoli.com</aand at <a href="https://codepen.io/simon3073" target="_blank">CodePen</a>
+-   👨‍💻 All of my projects are currently available at my <a href="https://github.com/simon3073" target="_blank">Github Homepage</a>, at <aand href="http://simonbertoli.com" target="_blank">simonbertoli.com</aand at <a href="https://codepen.io/simon3073" target="_blank">CodePen</a>
 
-- 📫 How to reach me **simonbertoli@yahoo.com.au**
+-   📫 How to reach me **simonbertoli@yahoo.com.au**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">

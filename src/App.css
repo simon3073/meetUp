@@ -47,6 +47,10 @@ input[type='number'] {
 }
 .event-grid {
     margin-top: 10px !important;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
 }
 
 .event-number {
@@ -107,7 +111,7 @@ input:focus {
 
 .grid-header {
     width: 97%;
-    margin: 0 auto 60px !important;
+    margin: 0 auto 50px !important;
 }
 
 .CitySearch {
@@ -180,6 +184,10 @@ input:focus {
 .event-details-block {
     padding-top: 0 !important;
     margin-top: -10px;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-duration: 0.5s;
 }
 
 .arrow {
@@ -284,123 +292,117 @@ input:focus {
     top: 0px;
 }
 
-/* .name {
-	font-size: 18px;
-	font-weight: 600;
+.data-vis-hr {
+    border: none;
+    border-top: rgb(229, 249, 9) 1px solid;
+    width: 100%;
+    padding-bottom: 30px;
 }
-
-.group-name {
-	text-transform: uppercase;
-	font-size: 14px;
-}
-
-.going,
-.visibility {
-	font-style: italic;
-}
-
-.description {
-	overflow-x: hidden;
-}
-
-.numberOfEvents {
-	width: 200px;
-	margin: 20px auto;
-	text-align: center;
-}
-
-.button-wrapper {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 20px;
-	padding: 20px;
-	font-family: sans-serif;
-}
-
-
 
 .data-vis-wrapper {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-}
-.data-vis-wrapper .recharts-responsive-container {
-	min-width: 100%;
-	display: flex;
-}
-.recharts-surface {
-	overflow: visible;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 60px;
 }
 
-.login-button {
-	color: #494949;
-	text-transform: uppercase;
-	text-decoration: none;
-	background: #ffffff;
-	padding: 20px;
-	border: 4px solid #494949;
-	display: inline-block;
-	transition: all 0.4s ease 0s;
-	min-width: 10rem;
-	margin: 1rem;
+.bar-graph {
+    flex-basis: 60%;
 }
 
-.google-btn {
-	width: 184px;
-	height: 42px;
-	margin: 1rem;
-	background-color: #4285f4;
-	border-radius: 2px;
-	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+.pie-graph {
+    flex-basis: 30%;
 }
-.google-btn:hover {
-	box-shadow: 0 0 6px #4285f4;
-}
-.google-btn:active {
-	background: #1669f2;
-}
-.google-icon-wrapper {
-	position: absolute;
-	margin-top: 1px;
-	margin-left: 1px;
-	width: 40px;
-	height: 40px;
-	border-radius: 2px;
-	background-color: #fff;
-}
-.google-icon {
-	position: absolute;
-	margin-top: 11px;
-	margin-left: -8px;
-	width: 18px;
-	height: 18px;
-}
-.btn-text {
-	float: right;
-	margin: 11px 11px 0 0;
-	color: #fff;
-	font-size: 14px;
-	letter-spacing: 0.2px;
+
+/* .recharts-legend-item span {
+    font-size: 18px;
+    font-weight: bold !important;
+    font-family: 'Roboto', sans-serif !important;
+    padding-bottom: 5px;
+    color: rgb(229, 249, 9);
+    padding-bottom: 15px;
 } */
+
+.recharts-cartesian-axis-tick-value,
+text.recharts-text.recharts-pie-label-text {
+    font-size: 18px;
+    font-weight: bold !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+    font-size: 1.1rem;
+}
+
+.recharts-default-tooltip {
+    background-color: #000 !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 10px;
+}
+
+.recharts-default-label {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.recharts-legend-item svg {
+    display: none !important;
+}
 
 @media only screen and (min-width: 992px) {
     .data-vis-wrapper {
         flex-direction: row;
     }
     .data-vis-wrapper .recharts-responsive-container {
-        flex-basis: 50%;
-        max-width: 50%;
         min-width: auto;
         margin: 0 auto;
+        flex-basis: 40%;
+        max-width: 40%;
+    }
+
+    .data-vis-wrapper .bar-graph {
+        flex-basis: 60%;
+        max-width: 60%;
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 991px) {
+    .data-vis-wrapper .recharts-responsive-container {
+        min-width: auto;
+        margin: 0 -20px 0;
+        flex-basis: 95%;
+        max-width: 95%;
+    }
+
+    .data-vis-wrapper .pie-graph {
+        margin: -40px 0 -40px 10px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
     .ui.stackable.grid > .wide.column {
         padding-top: 0 !important;
         margin-top: -10px !important;
     }
     .event-header {
         font-size: 1.2rem !important;
+    }
+
+    text.recharts-text.recharts-pie-label-text {
+        font-size: 14px !important;
+    }
+
+    .grid-header {
+        margin: 0 auto 10px !important;
+    }
+}
+
+/* Animations fadeIn */
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
