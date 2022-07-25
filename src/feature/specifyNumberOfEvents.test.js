@@ -4,8 +4,14 @@ import App from '../App';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 
 const feature = loadFeature('./src/feature/specifyNumberOfEvents.feature');
+class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+}
 
 defineFeature(feature, (test) => {
+    window.ResizeObserver = ResizeObserver;
     test("When user hasn't specified a number, 32 is the default number.", ({ given, when, then }) => {
         let AppWrapper;
         given('the main page is open', () => {

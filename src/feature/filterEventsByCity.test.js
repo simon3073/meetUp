@@ -7,8 +7,14 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import CitySearch from '../CitySearch';
 
 const feature = loadFeature('./src/feature/filterEventsByCity.feature');
+class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+}
 
 defineFeature(feature, (test) => {
+    window.ResizeObserver = ResizeObserver;
     test('When user hasn’t searched for a city, show events from all cities', ({ given, when, then }) => {
         let AppWrapper;
         given('user hasn’t searched for any city', () => {});

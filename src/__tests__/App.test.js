@@ -7,7 +7,14 @@ import NumberOfEvents from '../NumberOfEvents';
 import { mockData } from '../mock-data';
 import { extractLocations, getEvents } from '../api';
 
+class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+}
+
 describe('<App /> component', () => {
+    window.ResizeObserver = ResizeObserver;
     let AppWrapper;
     beforeAll(() => {
         AppWrapper = shallow(<App />);
@@ -27,7 +34,11 @@ describe('<App /> component', () => {
 });
 
 describe('<App /> integration', () => {
+    window.ResizeObserver = ResizeObserver;
     let AppWrapper;
+    beforeAll(() => {
+        AppWrapper = shallow(<App />);
+    });
     afterAll(() => {
         AppWrapper.unmount();
     });

@@ -4,8 +4,14 @@ import App from '../App';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 
 const feature = loadFeature('./src/feature/showHideEventDetails.feature');
+class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+}
 
 defineFeature(feature, (test) => {
+    window.ResizeObserver = ResizeObserver;
     test('An event element is collapsed by default', ({ given, when, then }) => {
         let AppWrapper;
         given('the main page is open', async () => {
