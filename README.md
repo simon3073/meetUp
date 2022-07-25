@@ -1,5 +1,7 @@
 # **meetUp!**
 
+<img src="https://res.cloudinary.com/ds9nzjduw/image/upload/v1658709494/CareeerFoundry%20Cuourse/README_Cover_Image_fm8bko.png">
+
 A serverless, progressive web application (PWA) built with React using a
 test-driven development (TDD) technique. The application uses the Google
 Calendar API to fetch upcoming events.

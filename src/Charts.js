@@ -23,10 +23,10 @@ export default function Charts(props) {
     // Custom Pie Chart functions
     const COLORS = [
         'rgb(229, 249, 9)',
-        'rgba(229, 249, 9, .8)',
-        'rgba(229, 249, 9, .6)',
+        'rgba(229, 249, 9, .85)',
+        'rgba(229, 249, 9, .7)',
+        'rgba(229, 249, 9, .55)',
         'rgba(229, 249, 9, .4)',
-        'rgba(229, 249, 9, .2)',
     ];
 
     return (
