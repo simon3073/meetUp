@@ -407,7 +407,86 @@ text.recharts-text.recharts-pie-label-text {
     }
 }
 
-/*  pie chart patterns */
-.recharts-sector {
-    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='20' height='20' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0, 0%, 0%, 0)'/><path d='M 10,-2.55e-7 V 20 Z M -1.1677362e-8,10 H 20 Z'  stroke-width='1' stroke='hsla(0, 0%, 0%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+/* loader styles */
+.loading-progress {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+}
+.loading-progress span {
+    padding: 150px 50px 0 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem !important;
+    color: #e5f909;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+    .loading-progress span {
+        font-size: 1.5rem !important;
+        line-height: 28px;
+    }
+}
+
+/**
+  * Dots flow
+  *
+  * @author jh3y - jheytompkins.com
+*/
+.dots-flow:before {
+    -webkit-animation: dots-flow 0.85s infinite ease;
+    animation: dots-flow 0.85s infinite ease;
+    border-radius: 100%;
+    content: '';
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -40px);
+    transform: translate(-50%, -40px);
+    width: 16px;
+}
+
+@-webkit-keyframes dots-flow {
+    0%,
+    100% {
+        -webkit-box-shadow: -26px 32px 0px 0 black, 0px 32px 0 0 black, 26px 32px 0 0 black;
+        box-shadow: -26px 32px 0px 0 black, 0px 32px 0 0 black, 26px 32px 0 0 black;
+    }
+    35% {
+        -webkit-box-shadow: -26px 32px 0 4px #e5f909, 0px 32px 0 0 black, 26px 32px 0 0 black;
+        box-shadow: -26px 32px 0 4px #e5f909, 0px 32px 0 0 black, 26px 32px 0 0 black;
+    }
+    50% {
+        -webkit-box-shadow: -26px 32px 0 0 black, 0px 32px 0 4px #e5f909, 26px 32px 0 0 black;
+        box-shadow: -26px 32px 0 0 black, 0px 32px 0 4px #e5f909, 26px 32px 0 0 black;
+    }
+    65% {
+        -webkit-box-shadow: -26px 32px 0px 0 black, 0px 32px 0 0 black, 26px 32px 0 4px #e5f909;
+        box-shadow: -26px 32px 0px 0 black, 0px 32px 0 0 black, 26px 32px 0 4px #e5f909;
+    }
+}
+
+@keyframes dots-flow {
+    0%,
+    100% {
+        -webkit-box-shadow: -26px 32px 0px 0 black, 0px 32px 0 0 black, 26px 32px 0 0 black;
+        box-shadow: -26px 32px 0px 0 black, 0px 32px 0 0 black, 26px 32px 0 0 black;
+    }
+    35% {
+        -webkit-box-shadow: -26px 32px 0 4px #e5f909, 0px 32px 0 0 black, 26px 32px 0 0 black;
+        box-shadow: -26px 32px 0 4px #e5f909, 0px 32px 0 0 black, 26px 32px 0 0 black;
+    }
+    50% {
+        -webkit-box-shadow: -26px 32px 0 0 black, 0px 32px 0 4px #e5f909, 26px 32px 0 0 black;
+        box-shadow: -26px 32px 0 0 black, 0px 32px 0 4px #e5f909, 26px 32px 0 0 black;
+    }
+    65% {
+        -webkit-box-shadow: -26px 32px 0px 0 black, 0px 32px 0 0 black, 26px 32px 0 4px #e5f909;
+        box-shadow: -26px 32px 0px 0 black, 0px 32px 0 0 black, 26px 32px 0 4px #e5f909;
+    }
 }
