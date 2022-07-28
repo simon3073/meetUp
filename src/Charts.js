@@ -16,18 +16,29 @@ import {
     Legend,
 } from 'recharts';
 
+const pattern1 = (
+    <svg id="patternId" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="a" patternUnits="userSpaceOnUse" width="20" height="20" patternTransform="scale(2) rotate(0)">
+                <rect x="0" y="0" width="100%" height="100%" fill="hsla(0, 0%, 0%, 0)" />
+                <path
+                    d="M 10,-2.55e-7 V 20 Z M -1.1677362e-8,10 H 20 Z"
+                    stroke-width="1"
+                    stroke="hsla(0, 0%, 0%, 1)"
+                    fill="none"
+                />
+            </pattern>
+        </defs>
+        <rect width="800%" height="800%" transform="translate(0,0)" fill="url(%23a)" />
+    </svg>
+);
+
 export default function Charts(props) {
     const { barData, pieData } = props;
     const oneColumn = useWindowSize().width < 768; // set variable onResize using the useWindowSize hook
 
     // Custom Pie Chart functions
-    const COLORS = [
-        'rgb(229, 249, 9)',
-        'rgba(229, 249, 9, .85)',
-        'rgba(229, 249, 9, .7)',
-        'rgba(229, 249, 9, .55)',
-        'rgba(229, 249, 9, .4)',
-    ];
+    const COLORS = ['#e5f909', '#dd61a3', '#ffffff', '#2bf909', '#06ffa4'];
 
     return (
         <>
@@ -36,8 +47,8 @@ export default function Charts(props) {
                 <ResponsiveContainer className={'bar-graph'} height={400}>
                     <BarChart width="100%" height={250} data={barData}>
                         <CartesianGrid strokeDasharray="1 1" />
-                        <XAxis dataKey="city" stroke="rgb(229, 249, 9)" />
-                        <YAxis allowDecimals={false} stroke="rgb(229, 249, 9)" />
+                        <XAxis dataKey="city" stroke="#e5f909" />
+                        <YAxis allowDecimals={false} stroke="#e5f909" />
                         <Tooltip />
                         <Bar dataKey="number" name="No of Events in each city" fill="rgba(229, 249, 9, .9)" />
                         <Legend layout="horizontal" verticalAlign="top" align="center" />{' '}
@@ -56,7 +67,7 @@ export default function Charts(props) {
                             dataKey="value"
                         >
                             {pieData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} pattern={pattern1} />
                             ))}
                         </Pie>
                     </PieChart>
