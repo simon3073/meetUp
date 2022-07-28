@@ -62,15 +62,26 @@ class CitySearch extends Component {
         }
     };
 
-    // on clicking of a suggestions
-    handleItemClicked = (suggestion) => {
+    updateEventDisplay = (selection) => {
         this.setState({
-            query: suggestion,
+            query: selection,
             showSuggestions: false,
             infoText: '',
             warningText: this.setOfflineMessage(),
         });
-        this.props.updateEvents(suggestion, null);
+        this.props.updateEvents(selection, null);
+    };
+
+    // on clicking of a suggestions
+    handleItemClicked = (suggestion) => {
+        this.updateEventDisplay(suggestion);
+    };
+
+    // on pressing enter with an empty input field, show all cities
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter' && e.target.value === '') {
+            this.updateEventDisplay('All Cities');
+        }
     };
 
     render() {
@@ -85,6 +96,7 @@ class CitySearch extends Component {
                     className="city"
                     value={this.state.query}
                     onChange={this.handleInputChanged}
+                    onKeyUp={this.handleKeyPress}
                 />
                 <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
                     {this.state.suggestions.map((suggestion) => (

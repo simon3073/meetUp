@@ -4,10 +4,10 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import Charts from './Charts';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
+
 import WelcomeScreen from './WelcomeScreen';
 import { Grid, Segment, Divider } from 'semantic-ui-react';
 import './App.css';
-import './nprogress.css';
 
 class App extends Component {
     // set the details event index as a state from top component
@@ -19,6 +19,7 @@ class App extends Component {
         locationSet: 'All Cities',
         detailIndex: undefined,
         eventNo: 32,
+        loadingValue: true,
     };
 
     async componentDidMount() {
@@ -43,6 +44,7 @@ class App extends Component {
     }
 
     updateEvents = (location, eventCount) => {
+        this.setState({ loadingValue: true });
         location = location || this.state.locationSet;
         eventCount = eventCount || this.state.eventNo;
         getEvents().then((events) => {
@@ -53,6 +55,7 @@ class App extends Component {
                 locationSet: location,
                 eventNo: eventCount,
                 detailIndex: null, // reset the details panel on changing of location or event no to view
+                loadingValue: false,
             });
         });
     };
@@ -80,8 +83,15 @@ class App extends Component {
     };
 
     render() {
-        const { events, locations, locationSet, showWelcomeScreen, detailIndex } = this.state;
+        const { events, locations, locationSet, showWelcomeScreen, detailIndex, loadingValue } = this.state;
         if (showWelcomeScreen === undefined) return <div className="App" />;
+        if (loadingValue)
+            return (
+                <div className="loading-progress">
+                    <div className="dots-flow" />
+                    <span> Your events are on the way... please wait!</span>
+                </div>
+            );
         return (
             <div className="App">
                 {showWelcomeScreen ? (

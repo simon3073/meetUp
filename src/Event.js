@@ -16,7 +16,7 @@ class Event extends Component {
     // display Google Event correctly
     displayDate = (d) => {
         const date = new Date(d);
-        return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     };
 
     // on update component check this event is not the current event set to show details
