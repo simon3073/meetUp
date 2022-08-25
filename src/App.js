@@ -11,7 +11,6 @@ import './App.css';
 
 class App extends Component {
     // set the details event index as a state from top component
-
     state = {
         showWelcomeScreen: undefined,
         events: [],
@@ -26,8 +25,10 @@ class App extends Component {
         this.mounted = true;
         const accessToken = localStorage.getItem('access_token');
         const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+        console.log('🚀 ~ file: App.js ~ line 28 ~ App ~ componentDidMount ~ isTokenValid', isTokenValid);
         const searchParams = new URLSearchParams(window.location.search);
         const code = searchParams.get('code');
+        console.log('🚀 ~ file: App.js ~ line 30 ~ App ~ componentDidMount ~ code', code);
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
         if ((code || isTokenValid) && this.mounted) {
             getEvents().then((events) => {
@@ -84,7 +85,7 @@ class App extends Component {
 
     render() {
         const { events, locations, locationSet, showWelcomeScreen, detailIndex, loadingValue } = this.state;
-        if (showWelcomeScreen === undefined) return <div className="App" />;
+        // if (showWelcomeScreen === undefined) return <div className="App" />;
         if (loadingValue)
             return (
                 <div className="loading-progress">
@@ -104,7 +105,11 @@ class App extends Component {
                             <Grid.Row className="grid-row-header">
                                 <Grid.Column>
                                     <Segment className="header-segment">
-                                        <CitySearch locations={locations} updateEvents={this.updateEvents} />
+                                        <CitySearch
+                                            locations={locations}
+                                            currentLocation={locationSet}
+                                            updateEvents={this.updateEvents}
+                                        />
                                         <NumberOfEvents updateEvents={this.updateEvents} />
                                     </Segment>
                                 </Grid.Column>
