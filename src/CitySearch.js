@@ -16,6 +16,13 @@ class CitySearch extends Component {
         this.setOfflineMessage = this.setOfflineMessage.bind(this);
     }
 
+    componentDidMount() {
+        const currentLocation = this.props.currentLocation;
+        if (currentLocation !== 'All Cities') {
+            this.setState({ query: this.props.currentLocation });
+        }
+    }
+
     // by default check if the app is offline - display message if so and leave blank otherwise
     setOfflineMessage = () => {
         return !navigator.onLine ? 'You are currently offline' : '';
@@ -127,6 +134,7 @@ class CitySearch extends Component {
 
 CitySearch.propTypes = {
     locations: PropTypes.array.isRequired,
+    currentLocation: PropTypes.string,
 };
 
 export default CitySearch;
