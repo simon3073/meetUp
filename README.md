@@ -166,22 +166,13 @@ SCENARIO 1: _Show a chart with the number of upcoming events in each city_
 -   Authorise using google account
     <br/>
 
----
+<br><br><br>
 
-<br/>
-<h2 align="left">HI! 👋  I'm Simon Bertoli - a developer from Melbourne, Aiustralia</h2>
+[![Header](https://res.cloudinary.com/ds9nzjduw/image/upload/v1670822823/simonbertoli.com/github_profile_banner_kbblzy.png "Header")](https://simonbertoli.com/)
 
-- 🔭 I’m currently working at <a href="https://pliny.com.au/">Pliny</a> as a Web Developer
+## 📇 Connect with me
 
-- 🌱 I’m currently learning as much as I can!
-
-- 👨‍💻 All of my projects are currently available at my <a href="https://github.com/simon3073" target="_blank">Github Homepage</a>, at <a href="http://simonbertoli.com" target="_blank">simonbertoli.com</a> and at <a href="https://codepen.io/simon3073" target="_blank">CodePen</a>
-
-- 📫 Reach me at **simonbertoli@yahoo.com.au**
-<br>
-<h3 align="left">Connect with me:</h3>
-<p align="left">
 <a href="https://codepen.io/simon3073" target="_blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/codepen.svg" alt="@simon3073" height="30" width="40" /></a>
 <a href="https://linkedin.com/in/simon-bertoli-5a73893" target="_blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="simon-bertoli-5a73893" height="30" width="40" /></a>
 </p>
-<br>
+
