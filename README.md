@@ -179,7 +179,6 @@ SCENARIO 1: _Show a chart with the number of upcoming events in each city_
 
 - 📫 Reach me at **simonbertoli@yahoo.com.au**
 <br>
-<br>
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 <a href="https://codepen.io/simon3073" target="_blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/codepen.svg" alt="@simon3073" height="30" width="40" /></a>
